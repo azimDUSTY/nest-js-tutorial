@@ -10,6 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -30,8 +31,9 @@ export class UserController {
    * @param body
    * @returns return object of a user
    */
+  @UsePipes(ValidationPipe)
   @Post()
-  async createUser(@Body() body) {
+  async createUser(@Body() body: CreateUserDto) {
     return await this.userService.createData(body);
   }
 
